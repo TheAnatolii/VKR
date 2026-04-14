@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: brain-segm-api
+    ports:
+      - "8000:8000"
+    environment:
+      DEVICE: "cpu"
+      MODEL_PATH: "/models/best_model_trans_unet.pth"
+      IMAGE_SIZE: "160"
+    volumes:
+      - ./models:/models:ro
+    restart: unless-stopped
